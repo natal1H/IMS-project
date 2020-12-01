@@ -19,5 +19,6 @@
             int contacts_normal; // number of social contacts in normal state (measure not active)
             int contacts_active; // number of social contacts when measure is active
         public:
+            Measure(std::string name, int contacts_normal, int contacts_active);
     };
 #endif

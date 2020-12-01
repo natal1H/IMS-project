@@ -1,6 +1,6 @@
 CPP=g++
 SOURCES=sir.cpp population.cpp measures.cpp main.cpp
-EXECUTABLE=sir
+EXECUTABLE=ims_project
 
 all: compile
 
