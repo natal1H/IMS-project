@@ -14,4 +14,5 @@
     #include <iostream>
 
     #include "population.h"
+    #include "sir.h"
 #endif

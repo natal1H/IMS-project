@@ -10,6 +10,7 @@
 #include "main.h"
 
 int main(int argc, char *argv[]) {
-    Population population;
-
+    //Population population;
+    SIR sir;
+    sir.run_simulation();
 }
