@@ -12,11 +12,8 @@
 SIR::SIR() {
     this->beta = 520.0/365.0; // TODO - tmp
     this->gamma = 1.0/7.0;
-    //this->t = 0.0;
-    this->S0 = 1.0-1e-6; // TODO - tmp
-    this->I0 = 1e-6; // TODO - tmp
-    //this->R0 = 0.0; // TODO - tmp
-    this->max_t =  70;
+
+    this->max_t =  60; // 60 days
 }
 
 void SIR::run_simulation() {
@@ -88,11 +85,27 @@ void SIR::runge_kutta(double step) {
 }
 
 void SIR::diff(double population[3]) {
-    this->dPop[0] = - this->beta * population[0] * population[1]; // dS/dt = -beta * S * I
-    this->dPop[1] = this->beta * population[0] * population[1] - this->gamma * population[1]; // dI/dt = beta * S * I - gamma * I
+    this->dPop[0] = - this->beta * this->exposure_factor * population[0] * population[1]; // dS/dt = -beta * exposure_factor * S * I
+    this->dPop[1] = this->beta * this->exposure_factor * population[0] * population[1] - this->gamma * population[1]; // dI/dt = beta * exposure_factor * S * I - gamma * I
     this->dPop[2] = this->gamma * population[1]; // dR/dt = gamma * I
 }
 
 void SIR::output_data() {
     printf("%g\t%g\t%g\t%g\n", this->t ,this->S, this->I, this->R);
+}
+
+void SIR::set_initial_data(Data *data) {
+    this->I0 = data->get_infected() / data->get_total_population();
+    this->R0 = data->get_recovered() / data->get_total_population();
+    this->S0 = 1 - this->I0 - this->R0;
+    this->exposure_factor = data->calculate_exposure_factor();
+}
+
+void SIR::print_initial_data() {
+    std::cout << "SIR model initial data:" << std::endl;
+    std::cout << "S0 = " << this->S0 << std::endl;
+    std::cout << "I0 = " << this->I0 << std::endl;
+    std::cout << "R0 = " << this->R0 << std::endl;
+    std::cout << "exposure_factor = " << this->exposure_factor << std::endl;
+
 }

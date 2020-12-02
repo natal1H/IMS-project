@@ -12,6 +12,9 @@
 
     #include <cmath>
     #include <cstdio> // TODO remove
+    #include <iostream>
+
+    #include "data.h"
 
     class SIR {
         private:
@@ -34,5 +37,7 @@
             void output_data();
             void runge_kutta(double step);
             void diff(double population[3]);
+            void set_initial_data(Data *data);
+            void print_initial_data();
     };
 #endif

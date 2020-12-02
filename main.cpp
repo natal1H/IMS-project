@@ -10,7 +10,11 @@
 #include "main.h"
 
 int main(int argc, char *argv[]) {
-    //Population population;
+    Data data;
+    data.set_active_measures("vysoke_skoly,stredne_skoly,2_stupen_ZS");
+    data.calculate_exposure_factor();
     SIR sir;
+    sir.set_initial_data(&data);
+    sir.print_initial_data();
     sir.run_simulation();
 }

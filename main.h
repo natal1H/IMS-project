@@ -13,6 +13,6 @@
 
     #include <iostream>
 
-    #include "population.h"
+    #include "data.h"
     #include "sir.h"
 #endif
