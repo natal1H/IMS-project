@@ -1,5 +1,5 @@
 CPP=g++
-SOURCES=sir.cpp data.cpp main.cpp
+SOURCES=discreteSIR.cpp data.cpp main.cpp
 EXECUTABLE=ims_project
 
 all: compile

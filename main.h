@@ -14,5 +14,5 @@
     #include <iostream>
 
     #include "data.h"
-    #include "sir.h"
+    #include "discreteSIR.h"
 #endif

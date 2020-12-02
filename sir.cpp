@@ -12,10 +12,11 @@
 SIR::SIR() {
     //this->beta = 520.0/365.0; // TODO - tmp
     //this->gamma = 1.0/7.0;
-    this->beta = 6.7e-7;
-    this->gamma = 0.04;
+    //this->beta = 0.01;//109226/365.0; //6.7e-7; // test
+    this->beta = 0.01;
+    this->gamma = 1.0;
 
-    this->max_t =  60; // 60 days
+    this->max_t =  1; // 60 days
 }
 
 void SIR::run_simulation() {
@@ -24,20 +25,19 @@ void SIR::run_simulation() {
     // set up initial conditions
     this->S=this->S0;
     this->I=this->I0;
-    this->R=1-this->S-this->I;
+    this->R=this->R0; // ????? mohla byt tu chyba??
 
     printf("beta=%g\ngamma=%g\nInitial S=%g\nInitial I=%g\nRuns until time %g\n\n",this->beta,this->gamma,S0,I0,this->max_t);
 
-    //step = 1.0; // step is single day
-    step = 0.01 / ((this->beta + this->gamma) * this->S0);
+    step = 0.01; // step is single day
+    //step = 0.01 / ((this->beta + this->gamma) * this->S0);
 
-    every = pow(10,floor(log10((1.0/((this->beta + this->gamma) * this->S0)))));
-    while(this->max_t / every > 10000) {
-        every *= 10.0;
-    }
+    //every = pow(10,floor(log10((1.0/((this->beta + this->gamma) * this->S0)))));
+    //while(this->max_t / every > 10000) {
+    //    every *= 10.0;
+   // }
     //every = 1.0;
-    printf("Using a time step of %g and outputing data every %g\n\n", step, every);
-
+    //printf("Using a time step of %g and outputing data every %g\n\n", step, every);
 
     printf("Using a time step of %g\n\n",step);
 
@@ -51,9 +51,9 @@ void SIR::run_simulation() {
         this->runge_kutta(step);
         this->t += step;
 
-        if( floor(this->t / every) > floor((this->t - step) / every)) {
+        //if( floor(this->t / every) > floor((this->t - step) / every)) {
             this->output_data();
-        }
+        //}
 
     }
     while(this->t < this->max_t);
@@ -104,12 +104,15 @@ void SIR::diff(double population[3]) {
 }
 
 void SIR::output_data() {
-    printf("%g\t%g\t%g\t%g\n", this->t ,this->S, this->I, this->R);
+    //printf("%g\t%g\t%g\t%g\n", this->t ,this->S, this->I, this->R);
+    printf("%f\t%f\t%f\t%f\n", this->t ,this->S * 5457873, this->I * 5457873, this->R * 5457873);
 }
 
 void SIR::set_initial_data(Data *data) {
-    this->I0 = data->get_infected() / data->get_total_population();
-    this->R0 = data->get_recovered() / data->get_total_population();
+    //this->I0 = data->get_infected() / data->get_total_population();
+    this->I0 = 1 / data->get_total_population();
+    //this->R0 = data->get_recovered() / data->get_total_population();
+    this->R0 = 0;
     this->S0 = 1 - this->I0 - this->R0;
     this->exposure_factor = data->calculate_exposure_factor();
 }
@@ -120,5 +123,4 @@ void SIR::print_initial_data() {
     std::cout << "I0 = " << this->I0 << std::endl;
     std::cout << "R0 = " << this->R0 << std::endl;
     std::cout << "exposure_factor = " << this->exposure_factor << std::endl;
-
 }
