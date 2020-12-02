@@ -10,14 +10,16 @@
 #include "sir.h"
 
 SIR::SIR() {
-    this->beta = 520.0/365.0; // TODO - tmp
-    this->gamma = 1.0/7.0;
+    //this->beta = 520.0/365.0; // TODO - tmp
+    //this->gamma = 1.0/7.0;
+    this->beta = 6.7e-7;
+    this->gamma = 0.04;
 
     this->max_t =  60; // 60 days
 }
 
 void SIR::run_simulation() {
-    double step;
+    double step, every;
 
     // set up initial conditions
     this->S=this->S0;
@@ -26,7 +28,16 @@ void SIR::run_simulation() {
 
     printf("beta=%g\ngamma=%g\nInitial S=%g\nInitial I=%g\nRuns until time %g\n\n",this->beta,this->gamma,S0,I0,this->max_t);
 
-    step = 1.0; // step is single day
+    //step = 1.0; // step is single day
+    step = 0.01 / ((this->beta + this->gamma) * this->S0);
+
+    every = pow(10,floor(log10((1.0/((this->beta + this->gamma) * this->S0)))));
+    while(this->max_t / every > 10000) {
+        every *= 10.0;
+    }
+    //every = 1.0;
+    printf("Using a time step of %g and outputing data every %g\n\n", step, every);
+
 
     printf("Using a time step of %g\n\n",step);
 
@@ -40,7 +51,9 @@ void SIR::run_simulation() {
         this->runge_kutta(step);
         this->t += step;
 
-        this->output_data();
+        if( floor(this->t / every) > floor((this->t - step) / every)) {
+            this->output_data();
+        }
 
     }
     while(this->t < this->max_t);
