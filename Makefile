@@ -1,5 +1,5 @@
 CPP=g++
-SOURCES=discreteSIR.cpp data.cpp main.cpp
+SOURCES=sir.cpp data.cpp main.cpp
 EXECUTABLE=ims_project
 
 all: compile
@@ -8,7 +8,7 @@ compile: $(SOURCES)
 	$(CPP) $(SOURCES) -o $(EXECUTABLE)
 
 run: $(SOURCES) compile
-	./$(EXECUTABLE)
+	./$(EXECUTABLE) $(ARGS)
 	
 clean: $(EXECUTABLE)
 	rm $(EXECUTABLE)

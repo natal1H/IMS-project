@@ -14,27 +14,27 @@
  */
 Data::Data() {
     // Use default data for Slovakia - calculated beforehand
-    this->size = 5457873;
-    this->measuresMap["bohosluzby_zakaz"] = 0.1147147511;
-    this->measuresMap["svadby_obrad"] = 0.0369882462;
-    this->measuresMap["pohreby_rodina"] = 0.00245849672;
-    this->measuresMap["obchody_zakladne"] = 0.1205198201;
-    this->measuresMap["obchody_centra_zatvorene"] = 0.2709192562;
-    this->measuresMap["detske_ihriska"] = 0.02125702324;
-    this->measuresMap["skolky_1_stupen_ZS"] = 0.08389847476;
-    this->measuresMap["2_stupen_ZS"] = 0.04934454367;
-    this->measuresMap["stredne_skoly"] = 0.08912619128;
-    this->measuresMap["vysoke_skoly"] = 0.02460851919;
-    this->measuresMap["internaty_zatvorene"] = 0.04746532298;
-    this->measuresMap["hromadne_podujatia_zakaz"] = 0;
-    this->measuresMap["kina_zatvorene"] = 0;
-    this->measuresMap["divadla_zatvorene"] = 0.003328146411;
-    this->measuresMap["posilnovne_zatvorene"] = 0;
-    this->measuresMap["restauracie_kaviarne_6_osob"] = 0;
+    size = 5457873;
+    measuresMap["bohosluzby_zakaz"] = 0.1147147511;
+    measuresMap["svadby_obrad"] = 0.0369882462;
+    measuresMap["pohreby_rodina"] = 0.00245849672;
+    measuresMap["obchody_zakladne"] = 0.1205198201;
+    measuresMap["obchody_centra_zatvorene"] = 0.2709192562;
+    measuresMap["detske_ihriska"] = 0.02125702324;
+    measuresMap["skolky_1_stupen_ZS"] = 0.08389847476;
+    measuresMap["2_stupen_ZS"] = 0.04934454367;
+    measuresMap["stredne_skoly"] = 0.08912619128;
+    measuresMap["vysoke_skoly"] = 0.02460851919;
+    measuresMap["internaty_zatvorene"] = 0.04746532298;
+    measuresMap["hromadne_podujatia_zakaz"] = 0;
+    measuresMap["kina_zatvorene"] = 0;
+    measuresMap["divadla_zatvorene"] = 0.003328146411;
+    measuresMap["posilnovne_zatvorene"] = 0;
+    measuresMap["restauracie_kaviarne_6_osob"] = 0;
 
     // default infected and recovered (to date 29.11.2020)
-    this->recovered = 816 + 64197;
-    this->infected = 105733 - this->recovered;
+    recovered = 816 + 64197;
+    infected = 105733 - recovered;
 }
 
 /**
@@ -44,7 +44,7 @@ Data::Data() {
 void Data::set_active_measures(std::string active) {
     std::vector<std::string> values = split(active, ',');
     for(auto item: values)
-        this->activeMeasures.push_back(item);
+        activeMeasures.push_back(item);
 }
 
 /**
@@ -53,8 +53,8 @@ void Data::set_active_measures(std::string active) {
  */
 double Data::calculate_exposure_factor() {
     double exposure_factor = 1.0;
-    for (auto measure: this->activeMeasures) {
-        exposure_factor -= this->measuresMap[measure];
+    for (auto measure: activeMeasures) {
+        exposure_factor -= measuresMap[measure];
     }
     return exposure_factor;
 }
@@ -64,7 +64,7 @@ double Data::calculate_exposure_factor() {
  * @return number of infected
  */
 int Data::get_infected() {
-    return this->infected;
+    return infected;
 }
 
 /**
@@ -72,7 +72,7 @@ int Data::get_infected() {
  * @return number of recovered + dead
  */
 int Data::get_recovered() {
-    return this->recovered;
+    return recovered;
 }
 
 /**
@@ -80,7 +80,7 @@ int Data::get_recovered() {
  * @return number of people in state
  */
 double Data::get_total_population() {
-    return this->size;
+    return size;
 }
 
 /**

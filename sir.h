@@ -16,6 +16,8 @@
 
     #include "data.h"
 
+    #define DEF_MAX_TIME 30
+
     class SIR {
     private:
         double beta; // growth rate
@@ -30,7 +32,7 @@
         int max_t; // max time - in days
     public:
         SIR();
-        void set_initial_data(Data *data);
+        void set_initial_data(Data *data, int max_t);
         void print_initial_data();
         void output_data();
         void run_simulation();

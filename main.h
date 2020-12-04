@@ -12,7 +12,10 @@
     #define _MAIN_H
 
     #include <iostream>
+    #include <unistd.h>
+    #include <cstdio>
 
     #include "data.h"
-    #include "discreteSIR.h"
+    #include "sir.h"
+
 #endif
