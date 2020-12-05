@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     data.set_active_measures(measures);
     data.calculate_exposure_factor();
     SIR sir;
-    sir.set_initial_data(&data, max_t);
+    sir.set_initial_data(&data, max_t, filename);
     sir.print_initial_data();
     sir.run_simulation();
 }

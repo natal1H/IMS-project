@@ -13,6 +13,7 @@
     #include <iostream>
     #include <cstdio>
     #include <cmath>
+    #include <fstream>
 
     #include "data.h"
 
@@ -30,9 +31,10 @@
         double dS, dI, dR;
         int t; // time
         int max_t; // max time - in days
+        std::ofstream output_file; // output file for later plotting
     public:
         SIR();
-        void set_initial_data(Data *data, int max_t);
+        void set_initial_data(Data *data, int max_t, std::string filename);
         void print_initial_data();
         void output_data();
         void run_simulation();

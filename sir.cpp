@@ -22,13 +22,18 @@ SIR::SIR() {
  * Set initial values N, S0, I0, R0, exposure_factor for simulation
  * @param data Object from where values are taken
  */
-void SIR::set_initial_data(Data *data, int max_t) {
+void SIR::set_initial_data(Data *data, int max_t, std::string filename) {
     this->N = data->get_total_population();
     this->I0 = data->get_infected() / this->N;
     this->R0 = data->get_recovered() / this->N;
     this->S0 = 1 - this->I0 - this->R0;
     this->exposure_factor = data->calculate_exposure_factor();
     this->max_t = max_t;
+
+    if (filename.length() > 0) {
+        output_file.open(filename);
+        output_file << "# exposure_factor " << this->exposure_factor << std::endl;
+    }
 }
 
 /**
@@ -45,11 +50,12 @@ void SIR::print_initial_data() {
 }
 
 /**
- * Outputs current values S, I, R
+ * Outputs current value of daily infected
  */
 void SIR::output_data() {
-    printf("%d\t%d\t%d\t%d|%f\t%f\t%f\n", t, (int)round(S * N), (int)round(I * N), (int)round(R * N),
-           dS * N, dI * N, dR * N);
+    printf("%d %d\n", t, (int)round(-dS * N));
+    if (output_file.is_open())
+        output_file << t << " " << (int)round(-dS * N) << std::endl;
 }
 
 /**
@@ -61,6 +67,7 @@ void SIR::run_simulation() {
     double prevI = I0;
     double prevR = R0;
 
+    printf("t new_infected\n");
     for (t = 1; t <= max_t; t++) {
         dS = -beta * exposure_factor * prevS * prevI;
         dI = beta * exposure_factor * prevS * prevI - gamma * prevI;
@@ -74,5 +81,9 @@ void SIR::run_simulation() {
         prevS = S;
         prevI = I;
         prevR = R;
+    }
+
+    if (output_file.is_open()) {
+        output_file.close();
     }
 }
