@@ -15,7 +15,6 @@
 SIR::SIR() {
     beta = 0.05634007047; // calculated beforehand
     gamma = 0.05524861878; // calculated beforehand
-    max_t =  30; // days
 }
 
 /**

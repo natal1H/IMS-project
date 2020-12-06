@@ -11,6 +11,7 @@
 
 int main(int argc, char *argv[]) {
     int opt, max_t = DEF_MAX_TIME;
+	max_t = 30;
     std::string measures = "";
     std::string filename = "";
 

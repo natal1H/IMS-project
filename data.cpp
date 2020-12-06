@@ -15,22 +15,25 @@
 Data::Data() {
     // Use default data for Slovakia - calculated beforehand
     size = 5457873;
-    measuresMap["bohosluzby_zakaz"] = 0.1147147511;
-    measuresMap["svadby_obrad"] = 0.0369882462;
-    measuresMap["pohreby_rodina"] = 0.00245849672;
+    measuresMap["bohosluzby_zakaz"] = 0.009433780108;
+    measuresMap["svadby_obrad"] = 0.00004316261269; 
+    measuresMap["pohreby_rodina"] = 0.00007745814873; 
     measuresMap["obchody_zakladne"] = 0.1205198201;
-    measuresMap["obchody_centra_zatvorene"] = 0.2709192562;
-    measuresMap["detske_ihriska"] = 0.02125702324;
-    measuresMap["skolky_1_stupen_ZS"] = 0.08389847476;
-    measuresMap["2_stupen_ZS"] = 0.04934454367;
-    measuresMap["stredne_skoly"] = 0.08912619128;
-    measuresMap["vysoke_skoly"] = 0.02460851919;
-    measuresMap["internaty_zatvorene"] = 0.04746532298;
-    measuresMap["hromadne_podujatia_zakaz"] = 0;
-    measuresMap["kina_zatvorene"] = 0;
-    measuresMap["divadla_zatvorene"] = 0.003328146411;
-    measuresMap["posilnovne_zatvorene"] = 0;
-    measuresMap["restauracie_kaviarne_6_osob"] = 0;
+    measuresMap["obchody_centra_zatvorene"] = 0.3755161819; 
+    measuresMap["detske_ihriska"] = 0.01177536592;
+    measuresMap["skolky_1_stupen_ZS"] = 0.07743897383; 
+	measuresMap["skolky_1_stupen_ZS_polovica"] = 0.04026826639;
+    measuresMap["2_stupen_ZS"] = 0.04558242456;
+    measuresMap["2_stupen_ZS_polovica"] = 0.02370286077; 
+    measuresMap["stredne_skoly"] = 0.08227205279; 
+    measuresMap["stredne_skoly_polovica"] = 0.04278146745; 
+    measuresMap["vysoke_skoly"] = 0.01362991636; 
+    measuresMap["vysoke_skoly_polovica"] = 0.007087556509; 
+    measuresMap["internaty_zatvorene"] = 0.001114094946; 
+    measuresMap["kina_zatvorene"] = 0.004250183865; 
+    measuresMap["divadla_zatvorene"] = 0.001037054046;
+    measuresMap["muzea_galerie_zatvorene"] = 0.002125793726; 
+    measuresMap["restauracie_kaviarne_6_osob"] = 0.04110399664;
 
     // default infected and recovered (to date 29.11.2020)
     recovered = 816 + 64197;
