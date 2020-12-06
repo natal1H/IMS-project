@@ -33,8 +33,8 @@ Data::Data() {
     measuresMap["kina_zatvorene"] = 0.004250183865; 
     measuresMap["divadla_zatvorene"] = 0.001037054046;
     measuresMap["muzea_galerie_zatvorene"] = 0.002125793726; 
-    measuresMap["restauracie_kaviarne_6_osob"] = 0.00000001938418367;
-    measuresMap["restauracie_kaviarne_zatvorene"] = 0.04110399664;
+    measuresMap["restauracie_kaviarne_6_osob"] = 0.04110399664; 
+    measuresMap["restauracie_kaviarne_zatvorene"] = 0,1027599916; 
 
     // default infected and recovered (to date 29.11.2020)
     recovered = 816 + 64197;
