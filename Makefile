@@ -2,9 +2,9 @@ CPP=g++
 SOURCES=sir.cpp data.cpp main.cpp
 EXECUTABLE=ims_project
 
-all: compile
+all: build
 
-compile: $(SOURCES)
+build: $(SOURCES)
 	$(CPP) $(SOURCES) -o $(EXECUTABLE)
 
 run: $(SOURCES) compile

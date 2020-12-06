@@ -18,7 +18,7 @@ Data::Data() {
     measuresMap["bohosluzby_zakaz"] = 0.01078358347; 
     measuresMap["svadby_obrad"] = 0.00004933840215;
     measuresMap["pohreby_rodina"] = 0.00008854100931;
-    measuresMap["obchody"] = 0,1507006675;
+    measuresMap["obchody"] = 0.1507006675;
     measuresMap["detske_ihriska"] = 0.01346020787;
     measuresMap["skolky_1_stupen_ZS"] = 0.08851909084;
 	measuresMap["skolky_1_stupen_ZS_polovica"] = 0.04602992724;
